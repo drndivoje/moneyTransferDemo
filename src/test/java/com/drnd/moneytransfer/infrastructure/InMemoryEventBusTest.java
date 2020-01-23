@@ -5,16 +5,15 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 
-public class InMemmoryEventBusTest {
+public class InMemoryEventBusTest {
 
     @Test
     public void shouldPublishAndListenOnEvent() {
-        InMemmoryEventBus eventBus = new InMemmoryEventBus();
+        InMemoryEventBus eventBus = new InMemoryEventBus();
         TestEventListener testEventEventListener = new TestEventListener();
-        eventBus.registerListener(testEventEventListener);
+        eventBus.registerListener(TestEvent.class, testEventEventListener);
         TestEvent event = new TestEvent();
 
-        eventBus.registerListener(testEventEventListener);
         eventBus.publish(event);
 
         assertEquals(event, testEventEventListener.getHandledEvent());

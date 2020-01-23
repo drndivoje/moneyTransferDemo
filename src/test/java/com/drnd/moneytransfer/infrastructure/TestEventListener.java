@@ -6,11 +6,6 @@ public class TestEventListener implements EventListener<TestEvent> {
     private TestEvent handledEvent;
 
     @Override
-    public Class<TestEvent> getEventType() {
-        return TestEvent.class;
-    }
-
-    @Override
     public void handle(TestEvent event) {
         this.handledEvent = event;
     }

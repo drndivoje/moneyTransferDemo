@@ -1,4 +1,4 @@
-package com.drnd.moneytransfer.infrastructure.account;
+package com.drnd.moneytransfer.infrastructure.account.events;
 
 import com.drnd.moneytransfer.model.Event;
 

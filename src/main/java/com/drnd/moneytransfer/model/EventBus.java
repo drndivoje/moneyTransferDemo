@@ -1,7 +1,8 @@
 package com.drnd.moneytransfer.model;
 
-public interface EventBus<T extends Event> {
+public interface EventBus {
     void publish(Event event);
-    void registerListener(EventListener listener);
+
+    <T extends Event> void registerListener(Class<T> eventClass, EventListener<T> listener);
 
 }

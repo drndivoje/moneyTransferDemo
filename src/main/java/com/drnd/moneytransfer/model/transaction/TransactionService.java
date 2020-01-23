@@ -1,8 +1,8 @@
 package com.drnd.moneytransfer.model.transaction;
 
-import com.drnd.moneytransfer.infrastructure.InMemmoryEventBus;
+import com.drnd.moneytransfer.infrastructure.InMemoryEventBus;
 import com.drnd.moneytransfer.infrastructure.transaction.InMemoryTransactionRepository;
-import com.drnd.moneytransfer.infrastructure.transaction.TransactionCreatedEvent;
+import com.drnd.moneytransfer.infrastructure.transaction.events.TransactionCreatedEvent;
 import com.drnd.moneytransfer.model.EventBus;
 
 public class TransactionService {
@@ -10,9 +10,9 @@ public class TransactionService {
     private final TransactionRepository transactionRepository;
     private final EventBus eventBus;
 
-    public TransactionService() {
+    public TransactionService(EventBus eventBus) {
         this.transactionRepository = new InMemoryTransactionRepository();
-        this.eventBus = new InMemmoryEventBus();
+        this.eventBus = eventBus;
     }
 
     public void createTransaction(Transaction transaction) {

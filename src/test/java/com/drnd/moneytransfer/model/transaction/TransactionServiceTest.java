@@ -1,6 +1,7 @@
 package com.drnd.moneytransfer.model.transaction;
 
 
+import com.drnd.moneytransfer.infrastructure.InMemoryEventBus;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -9,7 +10,7 @@ public class TransactionServiceTest {
 
     @Test
     public void shouldCreateTransaction() {
-        TransactionService transactionService = new TransactionService();
+        TransactionService transactionService = new TransactionService(new InMemoryEventBus());
 
         long fromId = 1234566L;
         long toId = 5325523L;

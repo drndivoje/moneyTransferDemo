@@ -1,7 +1,6 @@
 package com.drnd.moneytransfer.model.transaction;
 
-import com.drnd.moneytransfer.api.TransactionJson;
-
+import java.util.Objects;
 import java.util.UUID;
 
 public class Transaction {
@@ -34,5 +33,24 @@ public class Transaction {
 
     public TransactionStatus getStatus() {
         return this.status;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Transaction that = (Transaction) o;
+        return fromAccountId == that.fromAccountId &&
+                toAccountId == that.toAccountId &&
+                creationTimestamp == that.creationTimestamp &&
+                lastModifiedTimestamp == that.lastModifiedTimestamp &&
+                Double.compare(that.amount, amount) == 0 &&
+                Objects.equals(transactionId, that.transactionId) &&
+                status == that.status;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(transactionId, fromAccountId, toAccountId, status, creationTimestamp, lastModifiedTimestamp, amount);
     }
 }
