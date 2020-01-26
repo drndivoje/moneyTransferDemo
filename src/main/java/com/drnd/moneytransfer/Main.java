@@ -33,7 +33,7 @@ public class Main {
         TransactionController transactionController = new TransactionController(transactionService);
 
         path("/transactions", () -> {
-            get("/:id", transactionController::getTransaction);
+            get("/:id", transactionController::getTransaction, objectMapper::writeValueAsString);
             post("", transactionController::createTransaction, objectMapper::writeValueAsString);
         });
         eventBus.register(new BalanceTransferUpdatedListener(transactionService));
@@ -48,10 +48,11 @@ public class Main {
         AccountController accountController = new AccountController(accountService);
         path("/accounts", () -> {
             get("/:id", accountController::getAccount, objectMapper::writeValueAsString);
+            get("/:id/balance", accountController::getBalance, objectMapper::writeValueAsString);
             post("", accountController::createAccount, objectMapper::writeValueAsString);
         });
 
-        eventBus.register(new TransactionCreatedListener(accountService));
+        eventBus.register(new TransactionCreatedListener(eventBus, accountService));
 
     }
 }

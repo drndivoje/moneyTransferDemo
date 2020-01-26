@@ -39,21 +39,16 @@ public class AccountController {
         return toAccountJson(account);
     }
 
- /*   public Object updateBalance(Request request, Response response) throws Exception {
-        BalanceJson balanceJson = objectMapper.readValue(request.body(), BalanceJson.class);
+    public Object getBalance(Request request, Response response) {
         String id = request.params("id");
         long accountId = Long.parseLong(id);
-
-        if (accountService.existsAccount(accountId)) {
-            accountService.transfer(accountId, balanceJson.getAmount());
-            BalanceJson responseJson = new BalanceJson();
-            responseJson.setAmount(balanceJson.getAmount());
-            return responseJson;
+        Account account = accountService.getAccount(accountId);
+        if (account == null) {
+            response.status(404);
+            return new ErrorResponse("Account with id " + accountId + " does not exist.");
         }
-        response.status(400);
-        return new ErrorResponse("Account with id " + accountId + " does not exist.");
-
-    }*/
+        return new BalanceJson(account.getId(), account.getAmount());
+    }
 
     private AccountJson toAccountJson(Account account) {
         AccountJson accountJson = new AccountJson();

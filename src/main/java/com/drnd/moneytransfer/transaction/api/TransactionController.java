@@ -9,15 +9,15 @@ import spark.Response;
 public class TransactionController {
 
     private final TransactionService transactionService;
-    private final ObjectMapper objectMaper;
+    private final ObjectMapper objectMapper;
 
     public TransactionController(TransactionService transactionService) {
         this.transactionService = transactionService;
-        this.objectMaper = new ObjectMapper();
+        this.objectMapper = new ObjectMapper();
     }
 
     public Object createTransaction(Request request, Response response) throws Exception {
-        TransactionJson transactionJson = objectMaper.readValue(request.body(), TransactionJson.class);
+        TransactionJson transactionJson = objectMapper.readValue(request.body(), TransactionJson.class);
         Transaction transaction = new Transaction(transactionJson.getFromAccount(),
                 transactionJson.getToAccount(),
                 transactionJson.getAmount());
@@ -33,8 +33,7 @@ public class TransactionController {
             response.status(404);
             return "Cannot find transaction";
         }
-        return "OK";
-
+        response.status(200);
+        return new TransactionStatusJson(transaction.getId(), transaction.getStatus().toString());
     }
-
 }

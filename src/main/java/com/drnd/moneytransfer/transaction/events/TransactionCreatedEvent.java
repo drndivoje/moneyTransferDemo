@@ -4,12 +4,14 @@ import com.drnd.moneytransfer.messaging.Event;
 import com.drnd.moneytransfer.transaction.model.Transaction;
 
 public class TransactionCreatedEvent implements Event {
+    private final String transactionId;
     private final long fromAccountId;
     private final long toAccountId;
     private final double amount;
     private final long creationDate;
 
     public TransactionCreatedEvent(Transaction transaction) {
+        this.transactionId = transaction.getId();
         this.fromAccountId = transaction.getFromAccountId();
         this.toAccountId = transaction.getToAccountId();
         this.amount = transaction.getAmount();
@@ -31,5 +33,9 @@ public class TransactionCreatedEvent implements Event {
 
     public double getAmount() {
         return amount;
+    }
+
+    public String getTransactionId() {
+        return transactionId;
     }
 }
