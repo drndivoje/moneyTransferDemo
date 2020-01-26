@@ -27,6 +27,7 @@ public abstract class EventListener<T extends Event> implements Flow.Subscriber<
     @Override
     public final void onSubscribe(Flow.Subscription subscription) {
         this.subscription = subscription;
-        subscription.request(1);
+        //Long.MAX_VALUE is considered as unbounded demand for the subscription
+        subscription.request(Long.MAX_VALUE);
     }
 }

@@ -1,5 +1,7 @@
 package com.drnd.moneytransfer.transaction.model;
 
+import com.drnd.moneytransfer.transaction.exceptions.TransactionCommitFailedException;
+
 import java.util.Objects;
 import java.util.UUID;
 
@@ -8,7 +10,7 @@ public class Transaction {
     private final long fromAccountId;
     private final long toAccountId;
 
-    private TransactionStatus status;
+    private volatile TransactionStatus status;
 
     private final long creationTimestamp;
     private long lastModifiedTimestamp;
@@ -48,6 +50,11 @@ public class Transaction {
     }
 
     public void commit() {
+
+        if (!status.equals(TransactionStatus.PENDING)) {
+            throw new TransactionCommitFailedException(transactionId, "Failed to commit transaction " + transactionId
+                    + ". Transaction is not in PENDING status");
+        }
         this.status = TransactionStatus.SUCCESSFUL;
         this.lastModifiedTimestamp = System.currentTimeMillis();
     }

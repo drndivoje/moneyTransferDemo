@@ -7,7 +7,7 @@ public class AccountService {
         this.accountRepository = accountRepository;
     }
 
-    public void transfer(long fromAccountId, long toAccountId, double amount) {
+    public synchronized void transfer(long fromAccountId, long toAccountId, double amount) {
         Account fromAccount = accountRepository.findById(fromAccountId);
         Account toAccount = accountRepository.findById(toAccountId);
 

@@ -29,7 +29,7 @@ public class TransactionService {
     }
 
 
-    public void commit(String transactionId) {
+    public synchronized void commit(String transactionId) {
         Transaction transaction = transactionRepository.findById(transactionId);
         transaction.commit();
         transactionRepository.save(transaction);
