@@ -28,6 +28,7 @@ java -jar target/money-transfer-demo-0.0.1-SNAPSHOT-jar-with-dependencies.jar
 
 ## Basic use case
 
+### Creating account
 In order to transfer money from one account to another, at least 2 accounts should be created. Account creation can be done
 by calling this POST request
 
@@ -44,7 +45,22 @@ curl -v --header "Content-Type: application/json" \
 ```
 The request creates account with accountId 1. To create another account, just send request with different id.
 To simplified the use case every new account has 10 units balance by default.
+Account balance can be checked by
+```
+curl -v http://localhost:4567/accounts/1/balance
+```
+which returns
 
+```
+{"accountId":1,"amount":10.0}
+```
+
+Account details can be return by calling 
+```
+curl -v http://localhost:4567/accounts/1
+```
+
+### Creating transaction and retrieving transaction status
 
 Creating transaction from one account to another can be done by invoking this POST request
 

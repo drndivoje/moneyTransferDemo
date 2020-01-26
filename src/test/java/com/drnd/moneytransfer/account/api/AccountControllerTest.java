@@ -93,4 +93,23 @@ public class AccountControllerTest {
         verify(response, times(1)).status(404);
     }
 
+    @Test
+    public void shouldReturnDefaultBalance() throws Exception {
+        Request request = mock(Request.class);
+        when(request.body()).thenReturn(CREATE_ACCOUNT_JSON);
+        Response response = mock(Response.class);
+
+        Object accountResponse = accountController.createAccount(request, response);
+        AccountIdJson accountIdJson = (AccountIdJson) accountResponse;
+        when(request.params("id")).thenReturn(String.valueOf(accountIdJson.getAccountId()));
+
+        Object balance = accountController.getBalance(request, response);
+        assertEquals(BalanceJson.class, balance.getClass());
+        BalanceJson balanceJson = (BalanceJson) balance;
+        assertEquals(accountIdJson.getAccountId(), balanceJson.getAccountId());
+        assertEquals(10.0, balanceJson.getAmount(), 0);
+
+
+    }
+
 }
