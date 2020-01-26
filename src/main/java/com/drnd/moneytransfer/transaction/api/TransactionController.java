@@ -8,7 +8,6 @@ import spark.Response;
 
 import java.time.Instant;
 
-import static java.time.format.DateTimeFormatter.ISO_DATE_TIME;
 import static java.time.format.DateTimeFormatter.ISO_INSTANT;
 
 public class TransactionController {
@@ -36,7 +35,7 @@ public class TransactionController {
         Transaction transaction = transactionService.getTransaction(id);
         if (transaction == null) {
             response.status(404);
-            return "Cannot find transaction";
+            return new ErrorResponseJson("Cannot find transaction " + id);
         }
         response.status(200);
         return new TransactionStatusJson(transaction.getId(),

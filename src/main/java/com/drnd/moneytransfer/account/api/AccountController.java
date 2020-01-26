@@ -20,7 +20,7 @@ public class AccountController {
         long accountId = accountJson.getAccountId();
         if (accountService.existsAccount(accountId)) {
             response.status(400);
-            return new ErrorResponse("Account with id " + accountId + " has been already created.");
+            return new ErrorResponseJson("Account with id " + accountId + " has been already created.");
         }
 
         Account account = accountService.createAccount(accountId, accountJson.getFirstName(), accountJson.getLastName());
@@ -34,7 +34,7 @@ public class AccountController {
         Account account = accountService.getAccount(accountId);
         if (account == null) {
             response.status(404);
-            return new ErrorResponse("Account with id " + accountId + " does not exist.");
+            return new ErrorResponseJson("Account with id " + accountId + " does not exist.");
         }
         return toAccountJson(account);
     }
@@ -45,7 +45,7 @@ public class AccountController {
         Account account = accountService.getAccount(accountId);
         if (account == null) {
             response.status(404);
-            return new ErrorResponse("Account with id " + accountId + " does not exist.");
+            return new ErrorResponseJson("Account with id " + accountId + " does not exist.");
         }
         return new BalanceJson(account.getId(), account.getAmount());
     }

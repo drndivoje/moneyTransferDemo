@@ -54,8 +54,8 @@ public class AccountControllerTest {
 
         Object failedResponse = accountController.createAccount(request, response);
 
-        assertEquals(ErrorResponse.class, failedResponse.getClass());
-        ErrorResponse errorResponse = (ErrorResponse) failedResponse;
+        assertEquals(ErrorResponseJson.class, failedResponse.getClass());
+        ErrorResponseJson errorResponse = (ErrorResponseJson) failedResponse;
         assertEquals("Account with id 1 has been already created.", errorResponse.getMessage());
         verify(response, times(1)).status(400);
 
@@ -87,8 +87,8 @@ public class AccountControllerTest {
 
         Object failedResponse = accountController.getAccount(request, response);
 
-        assertEquals(ErrorResponse.class, failedResponse.getClass());
-        ErrorResponse errorResponse = (ErrorResponse) failedResponse;
+        assertEquals(ErrorResponseJson.class, failedResponse.getClass());
+        ErrorResponseJson errorResponse = (ErrorResponseJson) failedResponse;
         assertEquals("Account with id 1 does not exist.", errorResponse.getMessage());
         verify(response, times(1)).status(404);
     }

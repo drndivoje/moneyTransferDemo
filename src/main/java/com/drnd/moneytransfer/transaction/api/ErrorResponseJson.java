@@ -1,9 +1,9 @@
-package com.drnd.moneytransfer.account.api;
+package com.drnd.moneytransfer.transaction.api;
 
-public class ErrorResponse {
+public class ErrorResponseJson {
     private final String message;
 
-    public ErrorResponse(String message) {
+    public ErrorResponseJson(String message) {
         this.message = message;
     }
 
