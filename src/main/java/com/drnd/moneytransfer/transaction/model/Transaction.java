@@ -77,5 +77,10 @@ public class Transaction {
 
     public void discard() {
         this.status = TransactionStatus.DISCARD;
+        this.lastModifiedTimestamp = System.currentTimeMillis();
+    }
+
+    public long getLastModifiedDate() {
+        return this.lastModifiedTimestamp;
     }
 }

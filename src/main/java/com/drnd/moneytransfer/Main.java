@@ -16,8 +16,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import spark.Request;
 import spark.Response;
 
-import java.io.IOException;
-
 import static spark.Spark.after;
 import static spark.Spark.exception;
 import static spark.Spark.get;
@@ -26,7 +24,7 @@ import static spark.Spark.post;
 
 public class Main {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         EventBus eventBus = new EventBus();
         ObjectMapper objectMapper = new ObjectMapper();
         /*

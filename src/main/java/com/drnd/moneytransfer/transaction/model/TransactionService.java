@@ -5,6 +5,9 @@ import com.drnd.moneytransfer.transaction.events.TransactionCreatedEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * It handles all business logic related to transaction. It uses in memory storage for transaction.
+ */
 public class TransactionService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(TransactionService.class);

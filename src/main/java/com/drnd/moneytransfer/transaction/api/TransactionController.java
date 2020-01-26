@@ -6,6 +6,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import spark.Request;
 import spark.Response;
 
+import java.time.Instant;
+
+import static java.time.format.DateTimeFormatter.ISO_DATE_TIME;
+import static java.time.format.DateTimeFormatter.ISO_INSTANT;
+
 public class TransactionController {
 
     private final TransactionService transactionService;
@@ -34,6 +39,8 @@ public class TransactionController {
             return "Cannot find transaction";
         }
         response.status(200);
-        return new TransactionStatusJson(transaction.getId(), transaction.getStatus().toString());
+        return new TransactionStatusJson(transaction.getId(),
+                transaction.getStatus().toString(),
+                ISO_INSTANT.format(Instant.ofEpochMilli(transaction.getLastModifiedDate())));
     }
 }
