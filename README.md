@@ -8,10 +8,23 @@ The separation/decoupling of those 2 domains was  implemented by using Java Reac
 
 ## How to start the application
 
+To start using maven wrapper
 ```
 ./mvnw exec:java
 ```
 The application should start on http://localhost:4567
+
+It is possible to build the executable jar
+
+```
+./mvnw clean install
+```
+
+and run it as 
+
+```
+java -jar target/money-transfer-demo-0.0.1-SNAPSHOT-jar-with-dependencies.jar
+```
 
 ## Basic use case
 
