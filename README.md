@@ -6,6 +6,7 @@ Each domain has events which are related to the changes inside domain.
 The separation/decoupling of those 2 domains was  implemented by using Java Reactive Streams API from JDK 11. 
 
 
+
 ## How to start the application
 
 To start using maven wrapper
@@ -54,6 +55,7 @@ which returns
 ```
 {"accountId":1,"amount":10.0}
 ```
+_NOTE_:Currency and curency exange between accounts are not implemented 
 
 Account details can be return by calling 
 ```
