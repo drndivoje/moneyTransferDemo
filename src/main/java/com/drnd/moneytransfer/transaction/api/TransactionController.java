@@ -17,10 +17,10 @@ public class TransactionController {
     }
 
     public Object createTransaction(Request request, Response response) throws Exception {
-        TransactionJson transactionJson = objectMaper.convertValue(request.body(), TransactionJson.class);
+        TransactionJson transactionJson = objectMaper.readValue(request.body(), TransactionJson.class);
         Transaction transaction = new Transaction(transactionJson.getFromAccount(),
                 transactionJson.getToAccount(),
-                transactionJson.getAmmount());
+                transactionJson.getAmount());
 
         Transaction savedTransaction = transactionService.createTransaction(transaction);
         return new TransactionIdJson(savedTransaction.getId());

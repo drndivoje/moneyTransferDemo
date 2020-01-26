@@ -1,6 +1,7 @@
 package com.drnd.moneytransfer.account.api;
 
 public class AccountJson {
+    private long accountId;
     private String firstName;
     private String lastName;
 
@@ -22,5 +23,13 @@ public class AccountJson {
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
+    }
+
+    public long getAccountId() {
+        return accountId;
+    }
+
+    public void setAccountId(long accountId) {
+        this.accountId = accountId;
     }
 }

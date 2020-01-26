@@ -3,7 +3,7 @@ package com.drnd.moneytransfer.transaction.api;
 public class TransactionJson {
     private long fromAccount;
     private long toAccount;
-    private double ammount;
+    private double amount;
 
     public long getFromAccount() {
         return fromAccount;
@@ -21,11 +21,11 @@ public class TransactionJson {
         this.toAccount = toAccount;
     }
 
-    public double getAmmount() {
-        return ammount;
+    public double getAmount() {
+        return amount;
     }
 
-    public void setAmmount(double ammount) {
-        this.ammount = ammount;
+    public void setAmount(double amount) {
+        this.amount = amount;
     }
 }

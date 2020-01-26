@@ -23,7 +23,9 @@ public class Main {
     public static void main(String[] args) throws IOException {
         EventBus eventBus = new EventBus();
         ObjectMapper objectMapper = new ObjectMapper();
-
+        after("*", (request, response) -> {
+            response.type("application/json");
+        });
         /*
           Transaction API
          */
@@ -45,8 +47,7 @@ public class Main {
         AccountService accountService = new AccountService(accountRepository);
         AccountController accountController = new AccountController(accountService);
         path("/accounts", () -> {
-            after("*", (request, response) -> {response.header("Content-Type", "application/json");});
-            get("/:id", (request, response) -> "ssss");
+            get("/:id", accountController::getAccount, objectMapper::writeValueAsString);
             post("", accountController::createAccount, objectMapper::writeValueAsString);
         });
 

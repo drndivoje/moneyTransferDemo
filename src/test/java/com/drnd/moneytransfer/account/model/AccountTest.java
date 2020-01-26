@@ -9,9 +9,10 @@ public class AccountTest {
 
     @Test
     public void shouldWithdrawFromAccount() {
-        Account account = new Account("Max", "Mustermann");
+        Account account = new Account(1L, "Max", "Mustermann");
+        //assert initial balance
+        assertEquals(10, account.getAmount(), 0);
 
-        account.addAmount(10);
         account.withdraw(5);
 
         assertEquals(5.0, account.getAmount(), 0);
@@ -19,8 +20,8 @@ public class AccountTest {
 
     @Test(expected = AccountTransferFailedException.class)
     public void shouldFailToWithdrawFromAccount() {
-        Account account = new Account("Max", "Mustermann");
-        account.withdraw(5);
+        Account account = new Account(1L, "Max", "Mustermann");
+        account.withdraw(11);
     }
 
 }

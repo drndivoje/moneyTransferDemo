@@ -18,9 +18,17 @@ public class AccountService {
 
     }
 
-    public Account createAccount(String firstName, String lastName) {
-        Account account = new Account(firstName, lastName);
+    public Account createAccount(long accountId, String firstName, String lastName) {
+        Account account = new Account(accountId, firstName, lastName);
         accountRepository.save(account);
         return account;
+    }
+
+    public boolean existsAccount(long accountId) {
+        return accountRepository.findById(accountId) != null;
+    }
+
+    public Account getAccount(long accountId) {
+        return accountRepository.findById(accountId);
     }
 }

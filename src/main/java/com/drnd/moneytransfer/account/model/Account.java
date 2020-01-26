@@ -3,16 +3,18 @@ package com.drnd.moneytransfer.account.model;
 import com.drnd.moneytransfer.account.exceptions.AccountTransferFailedException;
 
 public class Account {
+    private static final double INITIAL_BALANCE = 10d;
     private long accountId;
     private String firstName;
     private String lastName;
     private double value;
 
-    public Account(String firstName, String lastName) {
+    public Account(long accountId, String firstName, String lastName) {
         //temporary solution to generate account id
-        this.accountId = System.currentTimeMillis();
+        this.accountId = accountId;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.value = INITIAL_BALANCE;
     }
 
 
@@ -35,5 +37,13 @@ public class Account {
 
     public double getAmount() {
         return this.value;
+    }
+
+    public String getLastname() {
+        return lastName;
+    }
+
+    public String getFirstName() {
+        return firstName;
     }
 }
