@@ -17,10 +17,6 @@ public class TestEventListener extends EventListener<TestEvent> {
 
     }
 
-    @Override
-    public void onComplete() {
-
-    }
 
     @Override
     protected void handle(TestEvent event) {

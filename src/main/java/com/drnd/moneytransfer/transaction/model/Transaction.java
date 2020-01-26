@@ -1,7 +1,5 @@
 package com.drnd.moneytransfer.transaction.model;
 
-import com.drnd.moneytransfer.transaction.exceptions.TransactionCommitFailedException;
-
 import java.util.Objects;
 import java.util.UUID;
 
@@ -50,13 +48,11 @@ public class Transaction {
     }
 
     public void commit() {
-
-        if (!status.equals(TransactionStatus.PENDING)) {
-            throw new TransactionCommitFailedException(transactionId, "Failed to commit transaction " + transactionId
-                    + ". Transaction is not in PENDING status");
+        if (status.equals(TransactionStatus.PENDING)) {
+            this.status = TransactionStatus.SUCCESSFUL;
+            this.lastModifiedTimestamp = System.currentTimeMillis();
         }
-        this.status = TransactionStatus.SUCCESSFUL;
-        this.lastModifiedTimestamp = System.currentTimeMillis();
+
     }
 
     @Override
@@ -79,4 +75,7 @@ public class Transaction {
     }
 
 
+    public void discard() {
+        this.status = TransactionStatus.DISCARD;
+    }
 }

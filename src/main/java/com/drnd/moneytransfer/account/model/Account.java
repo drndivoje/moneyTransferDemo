@@ -7,7 +7,7 @@ public class Account {
     private long accountId;
     private String firstName;
     private String lastName;
-    private double value;
+    private volatile double value;
 
     public Account(long accountId, String firstName, String lastName) {
         //temporary solution to generate account id
@@ -18,7 +18,7 @@ public class Account {
     }
 
 
-    public void withdraw(double amount) {
+    public void withdraw(double amount) throws AccountTransferFailedException {
         if (value < amount) {
             throw new AccountTransferFailedException(this.accountId, "Failed to withdraw amount of " + amount + " from account " + accountId);
         } else {

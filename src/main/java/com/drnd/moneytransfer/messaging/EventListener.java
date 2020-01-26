@@ -1,5 +1,9 @@
 package com.drnd.moneytransfer.messaging;
 
+import com.drnd.moneytransfer.account.listeners.TransactionCreatedListener;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.concurrent.Flow;
 
 /**
@@ -8,6 +12,9 @@ import java.util.concurrent.Flow;
  * @param <T> type of event.
  */
 public abstract class EventListener<T extends Event> implements Flow.Subscriber<Event> {
+    private static final Logger LOGGER = LoggerFactory.getLogger(EventListener.class);
+
+
     protected abstract void handle(T event);
 
     private Class<T> eventClass;
@@ -29,5 +36,10 @@ public abstract class EventListener<T extends Event> implements Flow.Subscriber<
         this.subscription = subscription;
         //Long.MAX_VALUE is considered as unbounded demand for the subscription
         subscription.request(Long.MAX_VALUE);
+    }
+
+    @Override
+    public void onComplete() {
+        LOGGER.trace("Handling event has been completed");
     }
 }

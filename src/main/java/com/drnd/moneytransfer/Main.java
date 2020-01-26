@@ -7,6 +7,7 @@ import com.drnd.moneytransfer.account.model.AccountService;
 import com.drnd.moneytransfer.account.model.InMemoryAccountRepository;
 import com.drnd.moneytransfer.messaging.EventBus;
 import com.drnd.moneytransfer.transaction.api.TransactionController;
+import com.drnd.moneytransfer.transaction.listeners.BalanceTransferCancelledListener;
 import com.drnd.moneytransfer.transaction.listeners.BalanceTransferUpdatedListener;
 import com.drnd.moneytransfer.transaction.model.TransactionService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -37,6 +38,7 @@ public class Main {
             post("", transactionController::createTransaction, objectMapper::writeValueAsString);
         });
         eventBus.register(new BalanceTransferUpdatedListener(transactionService));
+        eventBus.register(new BalanceTransferCancelledListener(transactionService));
 
 
         /*

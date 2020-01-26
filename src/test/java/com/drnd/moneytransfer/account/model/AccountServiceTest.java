@@ -1,5 +1,6 @@
 package com.drnd.moneytransfer.account.model;
 
+import com.drnd.moneytransfer.account.exceptions.AccountTransferFailedException;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -14,7 +15,7 @@ public class AccountServiceTest {
     }
 
     @Test
-    public void shouldTransferToAccount() {
+    public void shouldTransferToAccount() throws AccountTransferFailedException {
         Account account1 = accountService.createAccount(1, "Max", "Mustermann");
         Account account2 = accountService.createAccount(2, "John", "Doe");
 

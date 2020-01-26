@@ -8,7 +8,7 @@ import static org.junit.Assert.assertEquals;
 public class AccountTest {
 
     @Test
-    public void shouldWithdrawFromAccount() {
+    public void shouldWithdrawFromAccount() throws AccountTransferFailedException {
         Account account = new Account(1L, "Max", "Mustermann");
         //assert initial balance
         assertEquals(10, account.getAmount(), 0);
@@ -19,7 +19,7 @@ public class AccountTest {
     }
 
     @Test(expected = AccountTransferFailedException.class)
-    public void shouldFailToWithdrawFromAccount() {
+    public void shouldFailToWithdrawFromAccount() throws AccountTransferFailedException {
         Account account = new Account(1L, "Max", "Mustermann");
         account.withdraw(11);
     }
