@@ -42,6 +42,6 @@ public class TransactionCreatedListener extends EventListener<TransactionCreated
 
     @Override
     public void onError(Throwable throwable) {
-
+        LOGGER.error("Failed to handle TransactionCreatedEvent", throwable);
     }
 }

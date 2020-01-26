@@ -12,4 +12,13 @@ public class BalanceTransferUpdatedEvent implements Event {
     public String getTransactionId() {
         return transactionId;
     }
+
+    @Override
+    public String toString() {
+        return "BalanceTransferUpdatedEvent{" +
+                "transactionId='" + transactionId + '\'' +
+                '}';
+    }
+
+
 }

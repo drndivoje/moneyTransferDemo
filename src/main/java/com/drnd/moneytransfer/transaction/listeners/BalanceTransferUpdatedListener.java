@@ -24,5 +24,6 @@ public class BalanceTransferUpdatedListener extends EventListener<BalanceTransfe
 
     @Override
     public void onError(Throwable throwable) {
+        LOGGER.error("Failed to handle BalanceTransferUpdatedEvent", throwable);
     }
 }

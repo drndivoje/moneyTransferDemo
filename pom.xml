@@ -8,6 +8,7 @@
     <packaging>jar</packaging>
     <version>0.0.1-SNAPSHOT</version>
     <name>money-transfer-demo</name>
+    <description>Simple demo app for money transfer</description>
 
     <dependencyManagement>
         <dependencies>
@@ -47,6 +48,7 @@
             <version>2.10.1</version>
         </dependency>
 
+        <!-- Test dependencies-->
 
         <dependency>
             <groupId>junit</groupId>

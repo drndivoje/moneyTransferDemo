@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class AccountServiceTest {
     private AccountService accountService;
@@ -26,6 +27,12 @@ public class AccountServiceTest {
         Account updatedAccount2 = accountService.getAccount(account2.getId());
         assertEquals(5, updatedAccount1.getAmount(), 0);
         assertEquals(15, updatedAccount2.getAmount(), 0);
+    }
+
+    @Test
+    public void shouldCreateAccount() {
+        Account account1 = accountService.createAccount(1, "Max", "Mustermann");
+        assertTrue(accountService.existsAccount(account1.getId()));
     }
 
 
